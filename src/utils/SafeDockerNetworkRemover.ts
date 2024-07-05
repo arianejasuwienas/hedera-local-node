@@ -19,7 +19,7 @@
  */
 
 import shell from 'shelljs';
-import { IS_WINDOWS, NETWORK_NAMES } from "../constants";
+import { IS_WINDOWS, NETWORK_PREFIX } from "../constants";
 
 /**
  * Checks if the given string is a valid Docker network ID.
@@ -46,16 +46,7 @@ export class SafeDockerNetworkRemover {
    * Removes all the networks started by docker compose.
    */
   public static removeAll() {
-    for (const network of NETWORK_NAMES) {
-      this.removeByName(network)
-    }
-  }
-
-  /**
-   * Removes one single network by its name.
-   */
-  public static removeByName(name: string) {
-    const result = shell.exec(`docker network ls --filter name=${name} --format "{{.ID}}"`);
+    const result = shell.exec(`docker network ls --filter name=${NETWORK_PREFIX} --format "{{.ID}}"`);
     if (!result || result.stderr !== '') {
       return;
     }

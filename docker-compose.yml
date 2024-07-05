@@ -7,6 +7,8 @@ services:
     privileged: true
     network_mode: none
     command: ["-d 16"]
+    networks:
+      - mirror-node
 
   network-node:
     image: "${NETWORK_NODE_IMAGE_PREFIX}${NETWORK_NODE_IMAGE_NAME}:${NETWORK_NODE_IMAGE_TAG}"
@@ -288,6 +290,8 @@ services:
     environment:
       DOCKER_LOCAL_MIRROR_NODE_MENU_NAME: ${DOCKER_LOCAL_MIRROR_NODE_MENU_NAME}
       DOCKER_LOCAL_MIRROR_NODE_URL: ${DOCKER_LOCAL_MIRROR_NODE_URL}
+    networks:
+      - mirror-node
 
   web3:
     image: "${MIRROR_IMAGE_PREFIX}hedera-mirror-web3:${MIRROR_WEB3_IMAGE_TAG:-${MIRROR_IMAGE_TAG}}"
