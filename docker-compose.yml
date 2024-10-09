@@ -9,7 +9,8 @@ services:
     command: ["-d 16"]
 
   network-node:
-    image: "${NETWORK_NODE_IMAGE_PREFIX}${NETWORK_NODE_IMAGE_NAME}:${NETWORK_NODE_IMAGE_TAG}"
+    build: .
+  #  image: gcr.io/hedera-registry/main-network-node:0.51.3
     container_name: network-node
     user: root
     mem_swappiness: 0
