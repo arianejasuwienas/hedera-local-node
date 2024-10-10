@@ -10,7 +10,6 @@ services:
 
   network-node:
     build: .
-  #  image: gcr.io/hedera-registry/main-network-node:0.51.3
     container_name: network-node
     user: root
     mem_swappiness: 0
@@ -58,6 +57,7 @@ services:
       - "${APPLICATION_ROOT_PATH}/hedera.crt:/opt/hgcapp/services-hedera/HapiApp2.0/hedera.crt"
       - "${APPLICATION_ROOT_PATH}/hedera.key:/opt/hgcapp/services-hedera/HapiApp2.0/hedera.key"
       - "${RECORD_PARSER_ROOT_PATH}:/opt/hgcapp/recordParser"
+      - "./hedera-services:/opt/hedera-services"
 
   record-streams-uploader:
     image: "${UPLOADER_IMAGE_PREFIX}uploader-mirror:${UPLOADER_IMAGE_TAG}"
